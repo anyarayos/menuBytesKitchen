@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/63927/Documents/GitHub/menuBytesKitchen/menuBytesKitchen/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/63927/Documents/GitHub/menuBytesKitchen/menuBytesKitchen/app/src/main/res/layout/meals_order_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/63927/Documents/GitHub/menuBytesKitchen/menuBytesKitchen/app/src/main/res/layout/pending_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/63927/Documents/menuBytes/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/63927/Documents/menuBytes/app/src/main/res/layout/meals_order_list.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/63927/Documents/menuBytes/app/src/main/res/layout/pending_list.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

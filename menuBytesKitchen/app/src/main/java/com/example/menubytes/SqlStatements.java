@@ -19,14 +19,15 @@ public class SqlStatements {
             "GROUP BY orders.order_id;";
     private String retrieveOrderItemsByID = "\n" +
             "SELECT order_items.quantity, \n" +
-            "IF((order_items.product_bundle),CONCAT(\"B1G1\",product.product_name),product.product_name) AS name\n" +
+            "IF((order_items.product_bundle),CONCAT(\"B1G1\",product.product_name),product.product_name) AS name, " +
+            "order_items.has_addons\n" +
             "FROM order_items\n" +
             "INNER JOIN\n" +
             "product ON order_items.product_id = product.product_id\n" +
             "INNER JOIN\n" +
             "orders ON order_items.order_id = orders.order_id\n" +
             "WHERE order_items.order_id = (?) AND DATE(orders.created_at) = curdate()\n" +
-            "";
+            "AND product_name != \"Shawarma All Meat\"";
     private String serveOrder = "UPDATE order_status\n" +
             "SET order_status = (\"COMPLETED\"),\n" +
             "updated_at = current_timestamp(),\n" +

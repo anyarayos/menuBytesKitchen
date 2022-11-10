@@ -34,8 +34,8 @@
         android:layout_marginLeft="21dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/txtMealQty"
-        android:text="Table "
+        android:text="Addons"
         android:textColor="#FF000000"
-        android:textSize="12sp"/>
+        android:textSize="12sp" />
 
 </RelativeLayout>

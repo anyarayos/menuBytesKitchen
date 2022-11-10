@@ -31,7 +31,12 @@ public class MealsInOrderClassAdapter extends ArrayAdapter<MealsInOrderClassList
         txtViewMealQty.setText(getItem(position).getOrderQty());
         TextView txtViewMealName = convertView.findViewById(R.id.txtMealName);
         txtViewMealName.setText(getItem(position).getOrderName());
-
+        TextView txtAddOns = convertView.findViewById(R.id.txtAddOns);
+        if(getItem(position).isHas_addons()){
+            txtAddOns.setText("Shawarma All Meat");
+        }else{
+            txtAddOns.setVisibility(View.GONE);
+        }
         return convertView;
     }
 }

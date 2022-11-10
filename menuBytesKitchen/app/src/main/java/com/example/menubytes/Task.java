@@ -106,7 +106,8 @@ public class Task extends AsyncTask<String, String, Object> {
                         while (resultSet.next()) {
                             mealInOrder.add(new MealsInOrderClassList(
                                     resultSet.getString(1),
-                                    resultSet.getString(2)));
+                                    resultSet.getString(2),
+                                    resultSet.getBoolean(3)));
                         }
                         return mealInOrder;
                     }
