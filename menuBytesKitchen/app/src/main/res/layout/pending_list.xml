@@ -8,27 +8,18 @@
         android:id="@+id/txtOrderNumber"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:text="001"
         android:textColor="#FF000000"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/txtTable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/txtOrderNumber"
-        android:text="Table "
-        android:textColor="#FF000000"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/txtTableNumber"
-        android:layout_width="60dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/txtTable"
-        android:text="01"
+        android:layout_toRightOf="@id/txtOrderNumber"
+        android:text="Table_01"
         android:textColor="#FF000000"
         android:textSize="18sp"
         android:textStyle="bold" />
