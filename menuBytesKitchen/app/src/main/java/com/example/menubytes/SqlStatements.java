@@ -25,10 +25,9 @@ public class SqlStatements {
             "product ON order_items.product_id = product.product_id\n" +
             "INNER JOIN\n" +
             "orders ON order_items.order_id = orders.order_id\n" +
-            "LEFT JOIN\n" +
-            "payment ON payment.created_by = orders.created_by\n" +
+            "" +
             "WHERE order_items.order_id = (?) AND DATE(orders.created_at) = curdate()\n" +
-            "AND (payment.payment_status IS NULL OR payment.payment_status = \"PENDING\")";
+            "";
     private String serveOrder = "UPDATE order_status\n" +
             "SET order_status = (\"COMPLETED\"),\n" +
             "updated_at = current_timestamp(),\n" +
