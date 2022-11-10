@@ -14,9 +14,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:text="Table Number:"
-        android:textSize="15dp"
+        android:text="Table Name:"
         android:textColor="#FF000000"
+        android:textSize="15dp"
         app:layout_constraintEnd_toStartOf="@+id/txtViewTableNum"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -83,25 +83,30 @@
 
     <Button
         android:id="@+id/buttonPrepareThis"
-        android:layout_width="175dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:text="Prepare this order"
+        android:layout_marginTop="15dp"
+        android:text="Prepare"
         app:layout_constraintEnd_toStartOf="@+id/buttonServeThis"
-        app:layout_constraintTop_toBottomOf="@+id/mealsInOrderLV"
-        />
+        app:layout_constraintStart_toEndOf="@+id/buttonRejectThis"
+        app:layout_constraintTop_toBottomOf="@+id/mealsInOrderLV" />
+
+    <Button
+        android:id="@+id/buttonRejectThis"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Reject"
+        app:layout_constraintStart_toStartOf="@+id/mealsInOrderLV"
+        app:layout_constraintTop_toBottomOf="@+id/mealsInOrderLV" />
 
     <Button
         android:id="@+id/buttonServeThis"
-        android:layout_width="175dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Serve this Order"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:text="serve"
+        app:layout_constraintEnd_toEndOf="@+id/mealsInOrderLV"
         app:layout_constraintTop_toBottomOf="@+id/mealsInOrderLV" />
 
     <TextView
@@ -185,10 +190,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Order(s) in Queue"
+        android:text="Pending Order(s)"
+        android:textColor="#FF000000"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:textColor="#FF000000"
         app:layout_constraintEnd_toEndOf="@+id/incomingOrderLV"
         app:layout_constraintStart_toStartOf="@+id/incomingOrderLV"
         app:layout_constraintTop_toTopOf="parent" />
