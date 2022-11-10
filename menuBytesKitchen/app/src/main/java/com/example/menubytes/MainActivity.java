@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
         prepareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mealInOrder.clear();
+                mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
+                mealInOrderListView.setAdapter(mealsInOrderAdapter);
                 if(ORDER_ID!=null){
                     Task prepareOrder = new Task(Task.PREPARE_ORDER);
                     prepareOrder.execute(ORDER_ID);
@@ -112,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mealInOrder.clear();
+                mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
+                mealInOrderListView.setAdapter(mealsInOrderAdapter);
                 if(ORDER_ID!=null){
                     Task serveOrder = new Task(Task.SERVE_ORDER);
                     serveOrder.execute(ORDER_ID);
@@ -145,6 +151,9 @@ public class MainActivity extends AppCompatActivity {
                     queueArrayList.clear();
                     orderQueueAdapter = new OrderQueueAdapter(MainActivity.this,R.layout.pending_list,queueArrayList);
                     pendingListView.setAdapter(orderQueueAdapter);
+                    mealInOrder.clear();
+                    mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
+                    mealInOrderListView.setAdapter(mealsInOrderAdapter);
                 }
                 if(output!=null){
                     queueArrayList = (ArrayList<OrderQueueClassList>) output;

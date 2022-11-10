@@ -25,7 +25,6 @@ public class SqlStatements {
             "product ON order_items.product_id = product.product_id\n" +
             "INNER JOIN\n" +
             "orders ON order_items.order_id = orders.order_id\n" +
-            "" +
             "WHERE order_items.order_id = (?) AND DATE(orders.created_at) = curdate()\n" +
             "";
     private String serveOrder = "UPDATE order_status\n" +
