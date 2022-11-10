@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<MealsInOrderClassList> mealInOrder = new ArrayList<>();
     OrderQueueAdapter orderQueueAdapter;
     MealsInOrderClassAdapter mealsInOrderAdapter;
-    Button prepareBtn, sendBtn;
+    Button prepareBtn, sendBtn, rejectBtn;
     TextView orderNumTxt,tableNumTxt;
     TextView orderStatusTxt;
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         prepareBtn = findViewById(R.id.buttonPrepareThis);
         sendBtn = findViewById(R.id.buttonServeThis);
+        rejectBtn = findViewById(R.id.buttonRejectThis);
 
         pendingListView = findViewById(R.id.incomingOrderLV);
         mealInOrderListView = findViewById(R.id.mealsInOrderLV);
@@ -102,12 +103,13 @@ public class MainActivity extends AppCompatActivity {
         prepareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mealInOrder.clear();
+                ORDER_ID = orderNumTxt.getText().toString();
                 mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
                 mealInOrderListView.setAdapter(mealsInOrderAdapter);
                 if(ORDER_ID!=null){
                     Task prepareOrder = new Task(Task.PREPARE_ORDER);
                     prepareOrder.execute(ORDER_ID);
+                    orderStatusTxt.setText("PREPARING");
                 }
             }
         });
@@ -116,11 +118,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mealInOrder.clear();
+                ORDER_ID = orderNumTxt.getText().toString();
                 mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
                 mealInOrderListView.setAdapter(mealsInOrderAdapter);
                 if(ORDER_ID!=null){
                     Task serveOrder = new Task(Task.SERVE_ORDER);
                     serveOrder.execute(ORDER_ID);
+                    orderNumTxt.setText(null);
+                    tableNumTxt.setText(null);
+                    orderStatusTxt.setText(null);
+                }
+            }
+        });
+
+        rejectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mealInOrder.clear();
+                ORDER_ID = orderNumTxt.getText().toString();
+                mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
+                mealInOrderListView.setAdapter(mealsInOrderAdapter);
+                if(ORDER_ID!=null){
+                    //Task prepareOrder = new Task(Task.PREPARE_ORDER);
+                    //prepareOrder.execute(ORDER_ID);
+                    orderNumTxt.setText(null);
+                    tableNumTxt.setText(null);
+                    orderStatusTxt.setText(null);
                 }
             }
         });
