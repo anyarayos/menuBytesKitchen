@@ -5,6 +5,7 @@ public class MealsInOrderClassList {
     private String OrderName;
     private String OrderQty;
     private boolean has_addons;
+    private String flavors;
 
     public MealsInOrderClassList() {
 
@@ -19,6 +20,13 @@ public class MealsInOrderClassList {
         OrderName = orderName;
         OrderQty = orderQty;
         this.has_addons = has_addons;
+    }
+
+    public MealsInOrderClassList(String orderQty, String orderName,  boolean has_addons, String flavors) {
+        OrderName = orderName;
+        OrderQty = orderQty;
+        this.has_addons = has_addons;
+        this.flavors = flavors;
     }
 
     public boolean isHas_addons() {
@@ -46,4 +54,11 @@ public class MealsInOrderClassList {
         OrderQty = orderQty;
     }
 
+    public String getFlavors() {
+        return flavors;
+    }
+
+    public void setFlavors(String flavors) {
+        this.flavors = flavors;
+    }
 }

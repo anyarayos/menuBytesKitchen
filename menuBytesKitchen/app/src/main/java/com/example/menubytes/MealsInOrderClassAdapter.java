@@ -35,7 +35,12 @@ public class MealsInOrderClassAdapter extends ArrayAdapter<MealsInOrderClassList
         if(getItem(position).isHas_addons()){
             txtAddOns.setText("Shawarma All Meat");
         }else{
-            txtAddOns.setVisibility(View.GONE);
+            if(getItem(position).getFlavors()!=null){
+                txtAddOns.setText(getItem(position).getFlavors());
+            }
+            else {
+                txtAddOns.setText("");
+            }
         }
         return convertView;
     }

@@ -5,7 +5,7 @@ public class SqlStatements {
             "orders.order_id, orders.created_by,orderitems.qty,order_status.order_status\n" +
             "FROM orders\n" +
             "JOIN\n" +
-            "(SELECT order_id, SUM(quantity) AS qty FROM order_items GROUP BY order_id)\n" +
+            "(SELECT order_id, SUM(quantity) AS qty FROM order_items WHERE order_items.product_id != (15) GROUP BY order_id)\n" +
             "AS orderitems ON orderitems.order_id = orders.order_id\n" +
             "INNER JOIN\n" +
             "order_status ON order_status.order_id = orders.order_id\n" +
@@ -20,7 +20,7 @@ public class SqlStatements {
     private String retrieveOrderItemsByID = "\n" +
             "SELECT order_items.quantity, \n" +
             "IF((order_items.product_bundle),CONCAT(\"B1G1\",product.product_name),product.product_name) AS name, " +
-            "order_items.has_addons\n" +
+            "order_items.has_addons,order_items.flavors\n" +
             "FROM order_items\n" +
             "INNER JOIN\n" +
             "product ON order_items.product_id = product.product_id\n" +
