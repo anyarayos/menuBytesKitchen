@@ -49,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
         tableNumTxt = findViewById(R.id.txtViewTableNum);
         orderStatusTxt = findViewById(R.id.txtViewOrderStatus);;
 
-
-        //dummy data for queue
-        //queueArrayList.add(new OrderQueueClassList("001","01","3","IN QUEUE"));
         Task retrieveAllOrders = new Task(Task.RETRIEVE_ALL_ORDERS, new AsyncResponse() {
             @Override
             public void onFinish(Object output) {
