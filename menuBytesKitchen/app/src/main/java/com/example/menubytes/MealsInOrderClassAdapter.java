@@ -37,6 +37,10 @@ public class MealsInOrderClassAdapter extends ArrayAdapter<MealsInOrderClassList
         }else{
             if(getItem(position).getFlavors()!=null){
                 txtAddOns.setText(getItem(position).getFlavors());
+                String FlavorAll = getItem(position).getFlavors();
+                FlavorAll = FlavorAll.substring(0,FlavorAll.length()-1);
+                FlavorAll = FlavorAll.replaceAll("_","\n");
+                txtAddOns.setText(FlavorAll);
             }
             else {
                 txtAddOns.setText("");
