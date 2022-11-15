@@ -38,6 +38,15 @@ public class SqlStatements {
             "updated_at = current_timestamp(),\n" +
             "updated_by = \"kitchen\"\n" +
             "WHERE order_id = (?);";
+    private String rejectOrder = "UPDATE order_status\n" +
+            "SET order_status = (\"REJECTED\"),\n" +
+            "updated_at = current_timestamp(),\n" +
+            "updated_by = \"kitchen\"\n" +
+            "WHERE order_id = (?);";
+
+    public String getRejectOrder() {
+        return rejectOrder;
+    }
 
     public String getRetrieveAllOrders() {
         return retrieveAllOrders;

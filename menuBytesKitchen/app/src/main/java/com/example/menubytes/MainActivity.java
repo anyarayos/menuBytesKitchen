@@ -139,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
                 mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
                 mealInOrderListView.setAdapter(mealsInOrderAdapter);
                 if(ORDER_ID!=null){
-                    //Task prepareOrder = new Task(Task.PREPARE_ORDER);
-                    //prepareOrder.execute(ORDER_ID);
+                    Task rejectOrder = new Task(Task.REJECT_ORDER);
+                    rejectOrder.execute(ORDER_ID);
                     orderNumTxt.setText(null);
                     tableNumTxt.setText(null);
                     orderStatusTxt.setText(null);

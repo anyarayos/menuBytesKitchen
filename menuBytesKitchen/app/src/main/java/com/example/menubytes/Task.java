@@ -28,6 +28,7 @@ public class Task extends AsyncTask<String, String, Object> {
     public static String RETRIEVE_ORDER_ITEMS = "retrieveOrderItemsByID";
     public static String PREPARE_ORDER = "prepareOrder";
     public static String SERVE_ORDER = "acceptOrder";
+    public static String REJECT_ORDER = "rejectOrder";
 
 
     public Task(String method) {
@@ -121,6 +122,12 @@ public class Task extends AsyncTask<String, String, Object> {
                 }
                 if(method.equals(SERVE_ORDER)){
                     statement = connection.prepareStatement(sqlStatements.getServeOrder());
+                    int order_id = Integer.valueOf(params[0]);
+                    statement.setInt(1,order_id);
+                    statement.executeUpdate();
+                }
+                if(method.equals(REJECT_ORDER)){
+                    statement = connection.prepareStatement(sqlStatements.getRejectOrder());
                     int order_id = Integer.valueOf(params[0]);
                     statement.setInt(1,order_id);
                     statement.executeUpdate();
