@@ -22,6 +22,11 @@ public class IntroActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                * if(username is kitchen device)
+                *   if(username and password match)
+                *   start activity
+                * */
                 Intent i = new Intent(IntroActivity.this, MainActivity.class);
                 startActivity(i);
             }
