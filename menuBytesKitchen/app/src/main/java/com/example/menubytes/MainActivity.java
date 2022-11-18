@@ -3,6 +3,7 @@ package com.example.menubytes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getSupportActionBar().hide();
+
+        Intent intent = getIntent();
+        Bundle intentExtras = intent.getExtras();
+        String user_id = intentExtras.getString("user_id");
+
+        Task updateLoginTime = new Task(Task.UPDATE_LOGIN_TIME);
+        updateLoginTime.execute(user_id);
 
         prepareBtn = findViewById(R.id.buttonPrepareThis);
         sendBtn = findViewById(R.id.buttonServeThis);

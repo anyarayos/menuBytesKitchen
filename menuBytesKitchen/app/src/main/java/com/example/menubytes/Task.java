@@ -29,6 +29,10 @@ public class Task extends AsyncTask<String, String, Object> {
     public static String PREPARE_ORDER = "prepareOrder";
     public static String SERVE_ORDER = "acceptOrder";
     public static String REJECT_ORDER = "rejectOrder";
+    public static final String CHECK_USER_NAME_EXISTENCE = "checkUsernameExistence";
+    public static final String CHECK_USER_NAME_PASSWORD = "checkUsernamePassword";
+    public static final String UPDATE_LOGIN_TIME = " updateLogInTime" ;
+    private static final String UPDATE_LOGOUT_TIME = "updateLogOutTime";
 
 
     public Task(String method) {
@@ -132,6 +136,58 @@ public class Task extends AsyncTask<String, String, Object> {
                     statement.setInt(1,order_id);
                     statement.executeUpdate();
                 }
+
+                if(method.equals(CHECK_USER_NAME_EXISTENCE)){
+                    statement = connection.prepareStatement(sqlStatements.getCheckUsernameExistence());
+                    String user_id = null;
+                    String username = params[0];
+                    statement.setString(1, username);
+
+                    resultSet = statement.executeQuery();
+                    if (!resultSet.isBeforeFirst()) {
+                        Log.d(TAG, "CHECK_USER_NAME_EXISTENCE : NO DATA FOUND");
+                    } else {
+                        Log.d(TAG, "CHECK_USER_NAME_EXISTENCE: DATA FOUND");
+                        while (resultSet.next()) {
+                            user_id = resultSet.getString(1);
+                        }
+                        return user_id;
+                    }
+                }
+
+                if(method.equals(CHECK_USER_NAME_PASSWORD)){
+                    statement = connection.prepareStatement(sqlStatements.getCheckUsernamePassword());
+                    String user_id = null;
+                    String username = params[0];
+                    String password = params[1];
+                    statement.setString(1, username);
+                    statement.setString(2, password);
+                    resultSet = statement.executeQuery();
+                    if (!resultSet.isBeforeFirst()) {
+                        Log.d(TAG, "CHECK_USER_NAME_PASSWORD : NO DATA FOUND");
+                    } else {
+                        Log.d(TAG, "CHECK_USER_NAME_PASSWORD: DATA FOUND");
+                        while (resultSet.next()) {
+                            user_id = resultSet.getString(1);
+                        }
+                        return user_id;
+                    }
+                }
+
+                if(method.equals(UPDATE_LOGIN_TIME)){
+                    statement = connection.prepareStatement(sqlStatements.getUpdateLogInTime());
+                    String user_id = params[0];
+                    statement.setString(1,user_id);
+                    statement.executeUpdate();
+                }
+
+                if(method.equals(UPDATE_LOGOUT_TIME)){
+                    statement = connection.prepareStatement(sqlStatements.getUpdateLogOutTime());
+                    String user_id = params[0];
+                    statement.setString(1,user_id);
+                    statement.executeUpdate();
+                }
+
                 disconnect(resultSet,statement,connection);}
         }
         catch (SQLException e) {

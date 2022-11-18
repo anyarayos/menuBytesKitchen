@@ -44,6 +44,35 @@ public class SqlStatements {
             "updated_by = \"kitchen\"\n" +
             "WHERE order_id = (?);";
 
+    private String checkUsernameExistence = "SELECT user_id FROM user WHERE (user_name = (?) and user_type = 'kitchen');";
+
+    private String checkUsernamePassword = "SELECT user_id FROM user WHERE user_name = (?) AND password = (?);";
+
+    private String updateLogInTime = "UPDATE user\n" +
+            "SET log_in = current_timestamp()\n" +
+            "WHERE user_id = (?)\n" +
+            ";";
+    private String updateLogOutTime = "UPDATE user\n" +
+            "SET log_out = current_timestamp()\n" +
+            "WHERE user_id = (?)\n" +
+            ";";
+
+    public String getCheckUsernameExistence() {
+        return checkUsernameExistence;
+    }
+
+    public String getCheckUsernamePassword() {
+        return checkUsernamePassword;
+    }
+
+    public String getUpdateLogInTime() {
+        return updateLogInTime;
+    }
+
+    public String getUpdateLogOutTime() {
+        return updateLogOutTime;
+    }
+
     public String getRejectOrder() {
         return rejectOrder;
     }
