@@ -50,7 +50,7 @@ public class IntroActivity extends AppCompatActivity {
                                             Toast.makeText(IntroActivity.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
                                         }
                                     }
-                                });
+                                });checkUserNamePassword.execute(user_name,password);
                             }else{
                                 Toast.makeText(IntroActivity.this, "Username does not exist!", Toast.LENGTH_SHORT).show();
                             }
