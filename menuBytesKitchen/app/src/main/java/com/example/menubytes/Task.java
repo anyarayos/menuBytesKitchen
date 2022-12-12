@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class Task extends AsyncTask<String, String, Object> {
 
+    public static final String UPDATE_REJECT_ORDER = "UPDATE_ORDER_REJECTED";
     private AsyncResponse asyncResponse;
     private String method;
     private Connection connection;
@@ -46,7 +47,7 @@ public class Task extends AsyncTask<String, String, Object> {
 
     private void setConnection() {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.254.126:3306/menubytes", "admin", "admin");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.254.131:3306/menubytes", "admin", "admin");
         } catch (Exception e) {
             Log.i("DATABASE CONNECTION:", e.toString());
         }
@@ -132,6 +133,13 @@ public class Task extends AsyncTask<String, String, Object> {
                 }
                 if(method.equals(REJECT_ORDER)){
                     statement = connection.prepareStatement(sqlStatements.getRejectOrder());
+                    int order_id = Integer.valueOf(params[0]);
+                    statement.setInt(1,order_id);
+                    statement.executeUpdate();
+                }
+
+                if(method.equals(UPDATE_REJECT_ORDER)){
+                    statement = connection.prepareStatement(sqlStatements.getUpdateOrderRejected());
                     int order_id = Integer.valueOf(params[0]);
                     statement.setInt(1,order_id);
                     statement.executeUpdate();

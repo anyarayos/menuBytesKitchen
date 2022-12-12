@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String order_id = queueArrayList.get(position).getOrderNum();
                 ORDER_ID = order_id;
-                Toast.makeText(MainActivity.this, order_id, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, order_id, Toast.LENGTH_SHORT).show();
                 Task retrieveOrderItems = new Task(Task.RETRIEVE_ORDER_ITEMS, new AsyncResponse() {
                     @Override
                     public void onFinish(Object output) {
@@ -111,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
                 ORDER_ID = orderNumTxt.getText().toString();
                 mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
                 mealInOrderListView.setAdapter(mealsInOrderAdapter);
-                if(ORDER_ID!=null){
+                if (ORDER_ID.equals("")) {
+                    Toast.makeText(MainActivity.this, "No Order Found!", Toast.LENGTH_SHORT).show();
+                } else {
                     Task prepareOrder = new Task(Task.PREPARE_ORDER);
                     prepareOrder.execute(ORDER_ID);
                     orderStatusTxt.setText("PREPARING");
@@ -126,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
                 ORDER_ID = orderNumTxt.getText().toString();
                 mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
                 mealInOrderListView.setAdapter(mealsInOrderAdapter);
-                if(ORDER_ID!=null){
+                if (ORDER_ID.equals("")) {
+                    Toast.makeText(MainActivity.this, "No Order Found!", Toast.LENGTH_SHORT).show();
+                } else {
                     Task serveOrder = new Task(Task.SERVE_ORDER);
                     serveOrder.execute(ORDER_ID);
                     orderNumTxt.setText(null);
@@ -143,9 +147,13 @@ public class MainActivity extends AppCompatActivity {
                 ORDER_ID = orderNumTxt.getText().toString();
                 mealsInOrderAdapter = new MealsInOrderClassAdapter(MainActivity.this,R.layout.meals_order_list,mealInOrder);
                 mealInOrderListView.setAdapter(mealsInOrderAdapter);
-                if(ORDER_ID!=null){
+                if (ORDER_ID.equals("")) {
+                    Toast.makeText(MainActivity.this, "No Order Found!", Toast.LENGTH_SHORT).show();
+                } else {
                     Task rejectOrder = new Task(Task.REJECT_ORDER);
                     rejectOrder.execute(ORDER_ID);
+                    Task rejectUpdateorder = new Task(Task.UPDATE_REJECT_ORDER);
+                    rejectUpdateorder.execute(ORDER_ID);
                     orderNumTxt.setText(null);
                     tableNumTxt.setText(null);
                     orderStatusTxt.setText(null);
@@ -171,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void update(){
-        Toast.makeText(this, "refreshed", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "refreshed", Toast.LENGTH_SHORT).show();
         Task retrieveAllOrders = new Task(Task.RETRIEVE_ALL_ORDERS, new AsyncResponse() {
             @Override
             public void onFinish(Object output) {
@@ -191,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         retrieveAllOrders.execute();
-
     }
 
     @Override

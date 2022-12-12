@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="370dp"
+    android:layout_width="600dp"
     android:layout_height="match_parent"
     android:padding="12dp">
 
     <TextView
         android:id="@+id/txtMealQty"
-        android:layout_width="30dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center"
         android:text="00"
         android:textColor="#FF000000"
-        android:textSize="13sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/txtMealName"
-        android:layout_width="280dp"
+        android:layout_width="490dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_toRightOf="@id/txtMealQty"
         android:text="Table "
         android:textColor="#FF000000"
-        android:textSize="15sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtAddOns"
-        android:layout_width="260dp"
+        android:layout_width="460dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_below="@id/txtMealName"
         android:layout_toRightOf="@id/txtMealQty"
         android:text="Addons"
         android:textColor="#FF000000"
-        android:textSize="12sp" />
+        android:textSize="25sp" />
 
 </RelativeLayout>
