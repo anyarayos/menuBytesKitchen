@@ -43,6 +43,11 @@ public class SqlStatements {
             "updated_at = current_timestamp(),\n" +
             "updated_by = \"kitchen\"\n" +
             "WHERE order_id = (?);";
+    private String updateOrderRejected = "UPDATE orders SET created_by = CONCAT(created_by,\"_\") WHERE order_id=(?)";
+
+    public String getUpdateOrderRejected() {
+        return updateOrderRejected;
+    }
 
     private String checkUsernameExistence = "SELECT user_id FROM user WHERE (user_name = (?) and user_type = 'kitchen');";
 
