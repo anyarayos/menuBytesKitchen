@@ -3,12 +3,14 @@ package com.example.menubytes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private Timer autoUpdate;
+
+    String userManagerTemp, passMangerTemp;
 
     ListView pendingListView;
     ListView mealInOrderListView;
@@ -140,6 +144,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Dialog voidDialog;
+        voidDialog = new Dialog(this);
+        voidDialog.setContentView(R.layout.dialog_void);
+        voidDialog.getWindow().setBackgroundDrawable(this.getDrawable(R.drawable.dialog_background));
+        voidDialog.setCancelable(false);
+        voidDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        //USERNAME AND PASSWORD INSTANTIATE
+        EditText editTextUserManager = voidDialog.findViewById(R.id.userNameManager);
+        EditText editTextPassManager = voidDialog.findViewById(R.id.passwordManager);
+
         rejectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +165,22 @@ public class MainActivity extends AppCompatActivity {
                 if (ORDER_ID.equals("")) {
                     Toast.makeText(MainActivity.this, "No Order Found!", Toast.LENGTH_SHORT).show();
                 } else {
+                    //INSERT NOTIFY MANAGER CODES HERE
+                    voidDialog.show();
+                }
+
+            }
+        });
+
+        Button dialogButtonVoid = voidDialog.findViewById(R.id.voidButton);
+        dialogButtonVoid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userManagerTemp = editTextUserManager.getText().toString();
+                passMangerTemp = editTextPassManager.getText().toString();
+
+                //SETTING TEMPORARY CONDITION. SHOULD BE NOT HARD CODED
+                if (userManagerTemp.equals("manager") && passMangerTemp.equals("manager")) {
                     Task rejectOrder = new Task(Task.REJECT_ORDER);
                     rejectOrder.execute(ORDER_ID);
                     Task rejectUpdateorder = new Task(Task.UPDATE_REJECT_ORDER);
@@ -157,6 +188,10 @@ public class MainActivity extends AppCompatActivity {
                     orderNumTxt.setText(null);
                     tableNumTxt.setText(null);
                     orderStatusTxt.setText(null);
+                    voidDialog.dismiss();
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Manager Verification failed. Void Request unsuccessful", Toast.LENGTH_SHORT).show();
                 }
             }
         });
