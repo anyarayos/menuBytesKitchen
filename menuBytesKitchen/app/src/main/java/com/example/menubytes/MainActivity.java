@@ -180,19 +180,42 @@ public class MainActivity extends AppCompatActivity {
                 passMangerTemp = editTextPassManager.getText().toString();
 
                 //SETTING TEMPORARY CONDITION. SHOULD BE NOT HARD CODED
-                if (userManagerTemp.equals("manager") && passMangerTemp.equals("manager")) {
-                    Task rejectOrder = new Task(Task.REJECT_ORDER);
-                    rejectOrder.execute(ORDER_ID);
-                    Task rejectUpdateorder = new Task(Task.UPDATE_REJECT_ORDER);
-                    rejectUpdateorder.execute(ORDER_ID);
-                    orderNumTxt.setText(null);
-                    tableNumTxt.setText(null);
-                    orderStatusTxt.setText(null);
-                    voidDialog.dismiss();
+                /*TODO: user manager*/
+                if(!userManagerTemp.equals("") && !passMangerTemp.equals("")){
+                    Task validateManagerCreds = new Task(Task.VALIDATE_MANAGER_CREDS, new AsyncResponse() {
+                        @Override
+                        public void onFinish(Object output) {
+                            if(output!=null){
+                                Task rejectOrder = new Task(Task.REJECT_ORDER);
+                                rejectOrder.execute(ORDER_ID);
+                                Task rejectUpdateorder = new Task(Task.UPDATE_REJECT_ORDER);
+                                rejectUpdateorder.execute(ORDER_ID);
+                                orderNumTxt.setText(null);
+                                tableNumTxt.setText(null);
+                                orderStatusTxt.setText(null);
+                                voidDialog.dismiss();
+                            }else{
+                                Toast.makeText(MainActivity.this, "Manager Verification failed. Void Request unsuccessful", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });validateManagerCreds.execute(userManagerTemp,passMangerTemp);
+                }else{
+                    Toast.makeText(MainActivity.this, "Please enter username and password!", Toast.LENGTH_SHORT).show();
                 }
-                else {
-                    Toast.makeText(MainActivity.this, "Manager Verification failed. Void Request unsuccessful", Toast.LENGTH_SHORT).show();
-                }
+
+//                if (userManagerTemp.equals("manager") && passMangerTemp.equals("manager")) {
+//                    Task rejectOrder = new Task(Task.REJECT_ORDER);
+//                    rejectOrder.execute(ORDER_ID);
+//                    Task rejectUpdateorder = new Task(Task.UPDATE_REJECT_ORDER);
+//                    rejectUpdateorder.execute(ORDER_ID);
+//                    orderNumTxt.setText(null);
+//                    tableNumTxt.setText(null);
+//                    orderStatusTxt.setText(null);
+//                    voidDialog.dismiss();
+//                }
+//                else {
+//                    Toast.makeText(MainActivity.this, "Manager Verification failed. Void Request unsuccessful", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }

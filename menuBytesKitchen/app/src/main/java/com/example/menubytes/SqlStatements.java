@@ -62,6 +62,12 @@ public class SqlStatements {
             "WHERE user_id = (?)\n" +
             ";";
 
+    private String validateManager = "SELECT user_id FROM menubytes WHERE user_name = (?) AND password = (?) AND user_type = \"manager\";";
+
+    public String getValidateManager() {
+        return validateManager;
+    }
+
     public String getCheckUsernameExistence() {
         return checkUsernameExistence;
     }

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Task extends AsyncTask<String, String, Object> {
 
     public static final String UPDATE_REJECT_ORDER = "UPDATE_ORDER_REJECTED";
+    public static final String VALIDATE_MANAGER_CREDS = "VALIDATEMANAGER" ;
     private AsyncResponse asyncResponse;
     private String method;
     private Connection connection;
@@ -194,6 +195,25 @@ public class Task extends AsyncTask<String, String, Object> {
                     String user_id = params[0];
                     statement.setString(1,user_id);
                     statement.executeUpdate();
+                }
+
+                if(method.equals(VALIDATE_MANAGER_CREDS)){
+                    statement = connection.prepareStatement(sqlStatements.getValidateManager());
+                    String user_id = null;
+                    String username = params[0];
+                    String password = params[1];
+                    statement.setString(1, username);
+                    statement.setString(2, password);
+                    resultSet = statement.executeQuery();
+                    if (!resultSet.isBeforeFirst()) {
+                        Log.d(TAG, "CHECK_USER_NAME_PASSWORD : NO DATA FOUND");
+                    } else {
+                        Log.d(TAG, "CHECK_USER_NAME_PASSWORD : DATA FOUND");
+                        while (resultSet.next()) {
+                            user_id = resultSet.getString(1);
+                        }
+                        return user_id;
+                    }
                 }
 
                 disconnect(resultSet,statement,connection);}
