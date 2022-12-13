@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         voidDialog = new Dialog(this);
         voidDialog.setContentView(R.layout.dialog_void);
         voidDialog.getWindow().setBackgroundDrawable(this.getDrawable(R.drawable.dialog_background));
-        voidDialog.setCancelable(false);
+        //voidDialog.setCancelable(false);
         voidDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
         //USERNAME AND PASSWORD INSTANTIATE
